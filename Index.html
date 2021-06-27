@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="script.js"></script>
+</head>
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-inverse">
+    <div>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">CINE</a>
+        </div>
+      <ul class="nav navbar-nav">
+        <li><a href="#" active="active">Home</a></li>
+        <li><a href="#movies">Movies</a></li>
+        <li><a href="#language">Movie Languages</a></li>
+      </ul>
+  </nav>
+
+  <div id="main">
+    <div ng-view></div>
+    
+  </div>
+</body>
+<script>
+	var myApp = angular.module('myApp', ['ngRoute']);
+
+    myApp.config(function($routeProvider) {
+        $routeProvider
+
+        .when('/', {
+            templateUrl : 'home.html',
+            controller  : 'mainController'
+        })
+
+        .when('/movies', {
+            templateUrl : 'movies.html',
+            controller  : 'moviesController'
+        })
+
+        .when('/language', {
+            templateUrl : 'language.html',
+            controller  : 'mvLanguageController'
+        });
+});
+
+myApp.controller('mainController', function($scope) {
+    $scope.message = 'Look for Top Rated Movies';
+});
+
+myApp.controller('moviesController', function($scope) {
+    $scope.message = 'TOP 5 HIGHEST RATED INDIAN MOVIES';
+});
+
+myApp.controller('mvLanguageController', function($scope) {
+    $scope.message = 'MOST NUMBER OF MOVIES IN TOP 10';
+});
+</script>
+</html>
